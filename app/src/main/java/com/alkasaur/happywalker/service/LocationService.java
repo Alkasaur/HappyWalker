@@ -25,20 +25,11 @@ public class LocationService extends Service implements LocationListener {
     public void onCreate() {
         super.onCreate();
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    public void requestPermissions(@NonNull String[] permissions, int requestCode)
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for Activity#requestPermissions for more details.
-            return;
-        }
+
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            locationManager.requestLocationUpdates(GPS_PROVIDER, 0, 100, this);
+            locationManager.requestLocationUpdates(GPS_PROVIDER, 0, 0, this);
         } else {
-            locationManager.requestLocationUpdates(NETWORK_PROVIDER, 0, 100, this);
+            locationManager.requestLocationUpdates(NETWORK_PROVIDER, 0, 0, this);
         }
 
     }
